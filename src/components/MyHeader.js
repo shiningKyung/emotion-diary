@@ -1,4 +1,4 @@
-const MyHeader = ({headText, leftChild, rightChild}) => {
+const MyHeader = ({ headText, leftChild, rightChild }) => {
     return (
         <header>
             <div className="head_btn_left">

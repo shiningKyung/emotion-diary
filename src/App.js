@@ -1,4 +1,5 @@
 import './App.css';
+import React, { useReducer, useRef } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Home from './pages/Home';
@@ -6,47 +7,90 @@ import New from './pages/New';
 import Edit from './pages/Edit';
 import Diary from './pages/Diary';
 
-// COMPONENTS
-import MyButton from './components/MyButton';
-import MyHeader from './components/MyHeader';
+const reducer = (state, action) => {
+  let newState = [];
+  switch(action.type) {
+    case "INIT": {
+      return action.data;
+    }
+    case "CREATE": {
+      newState = [action.data, ...state];
+      break;
+    }
+    case "REMOVE": {
+      newState = state.filter((it) => it.id !== action.targetID);
+      break;
+    }
+    case "EDIT": {
+      newState = state.map((it) =>
+        it.id === action.data.id ? { ...action.data } : it
+      );
+      break;
+    }
+    default:
+      return state;
+  }
+  return newState;
+}
+
+export const DiaryStateContext = React.createContext();
+export const DiaryDispatchContext = React.createContext();
 
 function App() {
-  return (
-    <BrowserRouter>
-      <div className="App">
-        <MyHeader 
-          headText={"App"}
-          leftChild={
-            <MyButton text={"왼쪽버튼"} onClick={() => alert("왼쪽클릭")}/>
-          }
-          rightChild={
-            <MyButton text={"오른쪽버튼"} onClick={() => alert("오른쪽클릭")}/>
-          }
-        />
-        <h2>app.js</h2>
+  const [data, dispatch] = useReducer(reducer, []);
 
-        <MyButton 
-          text={"버튼"} 
-          onClick={() => alert("버튼클릭")} 
-          type={"positive"} 
-        />
-        <MyButton 
-          text={"버튼"} 
-          onClick={() => alert("버튼클릭")} 
-          type={"negative"} 
-        />
-        <MyButton 
-          text={"버튼"} 
-          onClick={() => alert("버튼클릭")} 
-        />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path='/new' element={<New />} />
-          <Route path='/edit' element={<Edit />} />
-          <Route path='/diary/:id' element={<Diary />}/>
-        </Routes>
-      </div>
-    </BrowserRouter>
+  const dataId = useRef(0);
+  // 일기작성
+  const onCreate = (data, content, emotion) => {
+    dispatch({
+      type: "CREATE",
+      data: {
+        id: dataId.current,
+        data: new Date(data).getTime(),
+        content,
+        emotion,
+      },
+    });
+    dataId.current += 1;
+  };
+  // 일기삭제
+  const onRemove = (targetId) => {
+    dispatch({ type:"REMOVE", targetId });
+  }
+  // 일기수정
+  const onEdit = (targetID, date, content, emotion) => {
+    dispatch({
+      type: "EDIT",
+      data: {
+        id: targetID,
+        date: new Date(date).getTime(),
+        content,
+        emotion,
+      },
+    });
+  };
+
+  return (
+    <DiaryStateContext.Provider value={data}>
+      <DiaryDispatchContext.Provider
+        value={{
+          onCreate,
+          onEdit,
+          onRemove,
+        }}
+      >
+        <BrowserRouter>
+          <div className="App">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path='/new' element={<New />} />
+              <Route path='/edit' element={<Edit />} />
+              <Route path='/diary/:id' element={<Diary />}/>
+            </Routes>
+          </div>
+        </BrowserRouter>
+      </DiaryDispatchContext.Provider>
+    </DiaryStateContext.Provider>
   );
 }
 
