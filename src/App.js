@@ -31,22 +31,43 @@ const reducer = (state, action) => {
       return state;
   }
   return newState;
-}
+};
 
 export const DiaryStateContext = React.createContext();
 export const DiaryDispatchContext = React.createContext();
 
+const dummyData = [
+  {
+    id: 1,
+    emotion: 1,
+    content: "일기 1번",
+    date: 1684216610383
+  },
+  {
+    id: 2,
+    emotion: 3,
+    content: "일기 2번",
+    date: 1684216610384
+  },
+  {
+    id: 3,
+    emotion: 5,
+    content: "일기 3번",
+    date: 1684216610385
+  },
+];
+
 function App() {
-  const [data, dispatch] = useReducer(reducer, []);
+  const [data, dispatch] = useReducer(reducer, dummyData);
 
   const dataId = useRef(0);
   // 일기작성
-  const onCreate = (data, content, emotion) => {
+  const onCreate = (date, content, emotion) => {
     dispatch({
       type: "CREATE",
       data: {
         id: dataId.current,
-        data: new Date(data).getTime(),
+        data: new Date(date).getTime(),
         content,
         emotion,
       },
