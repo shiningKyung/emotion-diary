@@ -95,7 +95,7 @@ header button {
 
 /* 헤더 끝 */
 
-/* 일기목록 */
+/* 일기목록 시작 */
 .DiaryList .menu_wrapper {
   margin-top: 20px;
   margin-bottom: 30px;
@@ -120,4 +120,23 @@ header button {
   cursor: pointer;
   font-family: "Nanum Pen Script";
   font-size: 18px;
+}
+/* 일기목록 끝 */
+
+/* 일기 게시물 */
+.DiaryItem {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #e2e2e2;
+  display: flex;
+  justify-content: space-between;
+}
+
+.DiaryItem .emotion_img_wrapper {
+  cursor: pointer;
+  min-width: 120px;
+  height: 80px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
 }
