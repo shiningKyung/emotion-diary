@@ -123,7 +123,7 @@ header button {
 }
 /* 일기목록 끝 */
 
-/* 일기 게시물 */
+/* 일기 게시물 시작 */
 .DiaryItem {
   padding-top: 15px;
   padding-bottom: 15px;
@@ -139,4 +139,44 @@ header button {
   border-radius: 5px;
   display: flex;
   justify-content: center;
+}
+
+.DiaryItem .info_wrapper {
+  flex-grow: 1;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.DiaryItem .diary_date {
+  font-weight: bold;
+  font-size: 25px;
+  margin-bottom: 5px;
+}
+
+.DiaryItem .diary_content_preview {
+  font-size: 18px;
+}
+
+.DiaryItem .btn_wrapper {
+  min-width: 70px;
+}
+/* 일기 게시물 끝 */
+
+/* 일기수정 시작 */
+.DiaryEditor section {
+  margin-bottom: 40px;
+}
+
+.DiaryEditor h4 {
+  font-size: 22px;
+}
+
+.DiaryEditor .input_date {
+  border: none;
+  border-radius: 5px;
+  background-color: #ececec;
+  padding: 10px 20px 10px 20px;
+  cursor: pointer;
+  font-family: "Nanum Pen Script";
+  font-size: 20px;
 }
