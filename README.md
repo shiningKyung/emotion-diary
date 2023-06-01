@@ -10,6 +10,6 @@
 ### 화면구성 및 기능
 ||화면|
 |---|-----|
-|메인 페이지|테스트2|
+|메인 페이지|![image](https://github.com/shiningKyung/emotion-diary/assets/110381560/039dbf54-748c-46df-823c-ef2ac89d7a17)|
 |일기작성/수정 페이지|테스트2|
 |일기상세 페이지|테스트2|
