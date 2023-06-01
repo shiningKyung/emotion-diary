@@ -12,4 +12,4 @@
 |---|-----|
 |메인 페이지|![image](https://github.com/shiningKyung/emotion-diary/assets/110381560/039dbf54-748c-46df-823c-ef2ac89d7a17)|
 |일기작성/수정 페이지|![image](https://github.com/shiningKyung/emotion-diary/assets/110381560/723159f3-d1cc-4696-99e2-7dc0c5028a6d)|
-|일기상세 페이지|테스트2|
+|일기상세 페이지|![image](https://github.com/shiningKyung/emotion-diary/assets/110381560/1a141f58-63d3-4edc-a202-11d450b0d91f)|
